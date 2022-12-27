@@ -25,16 +25,6 @@
 
 ;; Utility functions:
 
-(defun sensible-defaults/comment-or-uncomment-region-or-line ()
-  "Comments or uncomments the region or the current line if
-there's no active region."
-  (interactive)
-  (let (beg end)
-    (if (region-active-p)
-        (setq beg (region-beginning) end (region-end))
-      (setq beg (line-beginning-position) end (line-end-position)))
-    (comment-or-uncomment-region beg end)))
-
 (defun sensible-defaults/reset-text-size ()
   (interactive)
   (text-scale-set 0))
@@ -175,11 +165,6 @@ insert the text where point is, not where the mouse cursor is."
 
 ;; Keybindings:
 
-(defun sensible-defaults/bind-commenting-and-uncommenting ()
-  "Comment or uncomment a region by hitting M-;."
-  (global-set-key (kbd "M-;")
-                  'sensible-defaults/comment-or-uncomment-region-or-line))
-
 (defun sensible-defaults/bind-home-and-end-keys ()
   "Make <home> and <end> move point to the beginning and end of
 the line, respectively."
@@ -197,7 +182,6 @@ respectively."
 
 (defun sensible-defaults/use-all-keybindings ()
   "Use all of the sensible-defaults keybindings."
-  (sensible-defaults/bind-commenting-and-uncommenting)
   (sensible-defaults/bind-home-and-end-keys)
   (sensible-defaults/bind-keys-to-change-text-size))
 
